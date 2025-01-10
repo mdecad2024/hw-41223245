@@ -32,7 +32,8 @@
 <p><img alt="" height="185" src="/images/L.png" width="400"/></p>
 <p><img alt="" height="184" src="/images/M.png" width="400"/></p>
 <p><img alt="" height="185" src="/images/N.png" width="400"/></p>
-<p><img alt="" height="185" src="/images/O.png" width="400"/></p><h1>HW1</h1>
+<p><img alt="" height="185" src="/images/O.png" width="400"/></p>
+<h1>HW1</h1>
 <p>Homework 1 (10%):</p>
 <p><span>用sharex截圖</span></p>
 <p><span><img alt="" height="143" src="/images/螢幕擷取畫面 2024-09-20 143954.png" width="400"/></span></p>
@@ -156,7 +157,8 @@ function openByGet(){
 }
 
 openByGet();
-</script><h3>w11_ch</h3>
+</script>
+<h3>w11_ch</h3>
 <h3>w11_hw</h3>
 <p>與<a href="https://mdecad2024.github.io/hw-linryan23/content/index.html">41223223</a>、<a href="https://mdecad2024.github.io/hw-41223251/content/index.html">41223251</a>同組</p>
 <p><span>零件分配:</span></p>
@@ -356,7 +358,8 @@ var viewer3d;
 <p>照片:</p>
 <p><img alt="" height="212" src="/images/Pinball.png" width="400"/></p>
 <p>影片:</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/hKxmYrm0V4g?si=oWvlDTQUq0ZMBCkg" title="YouTube video player" width="560"></iframe></p><h2>w7</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/hKxmYrm0V4g?si=oWvlDTQUq0ZMBCkg" title="YouTube video player" width="560"></iframe></p>
+<h2>w7</h2>
 <p>從<a href="http://229.cycu.org/part_modeling_projects.pdf">零件模擬練習</a>中選出零件, 隨堂進行考試.</p>
 <p>零件考試題目以 Solvespace 繪圖操作過程影片如下:</p>
 <h3>練習3</h3>
@@ -1133,11 +1136,70 @@ openByGet();
 <p><img alt="" height="212" src="/images/ex3.png" width="400"/></p>
 <p>影片:</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tKr9zIPYtCk?si=8URuvu_6iqUHSPkS" title="YouTube video player" width="560"></iframe></p>
+<h1>Pinball</h1>
+<p><a href="/downloads/pinpinball.ttt">/downloads/pinball.ttt</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pip install pyzmq cbor keyboard
+from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+import keyboard
+
+# Connecting to the CoppeliaSim server
+client = RemoteAPIClient('localhost', 23000)
+
+print('Program started')
+sim = client.getObject('sim')
+
+# Get the handles for the sliders (prismatic joints)
+cw = sim.getObject('/cw_joint')
+ccw = sim.getObject('/ccw_joint')
+slider = sim.getObject('/Prismatic_joint')
+
+# Starting the simulation
+sim.startSimulation()
+print('Simulation started')
+
+# Main control loop
+def main():
+    # Keep running until simulation is stopped
+    while True:
+        # Controls for cw and ccw joints
+        if keyboard.is_pressed('l'):  # Move cw slider to -0.25 position
+            print("l is pressed")
+            sim.setJointTargetPosition(cw, -0.25)
+
+        if keyboard.is_pressed('p'):  # Reset cw slider to the original position
+            print("p is pressed")
+            sim.setJointTargetPosition(cw, 0.0)
+
+        if keyboard.is_pressed('w'):  # Move ccw slider to -0.28 position
+            print("w is pressed")
+            sim.setJointTargetPosition(ccw, -0.28)
+
+        if keyboard.is_pressed('s'):  # Reset ccw slider to the original position
+            print("s is pressed")
+            sim.setJointTargetPosition(ccw, 0.0)
+
+        # Controls for the Prismatic_joint
+        if keyboard.is_pressed('E'):  # Move slider to -0.15 position
+            print("E is pressed")
+            sim.setJointTargetPosition(slider, 0.20)
+
+        if keyboard.is_pressed('D'):  # Reset slider to the original position
+            print("D is pressed")
+            sim.setJointTargetPosition(slider, 0.0)
+
+        # Stop the simulation
+        if keyboard.is_pressed('t'):  # Stop the simulation
+            print("t is pressed - stopping simulation")
+            sim.stopSimulation()
+            break
+
+# Start the main control loop
+main()</pre>
 <h1>Final Report</h1>
 <p></p>
 <p>期末口頭與書面專題報告 (30%)</p>
 <p>期末報告影片:</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Ir9zIGcVxJ8?si=6nTReWy2shFiPdDo" title="YouTube video player" width="560"></iframe></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tuC5kbiJhS0?si=beAaxYQH1FBIFToT" title="YouTube video player" width="560"></iframe></p>
 <p>期末書面專題報告檔案 (pdf):</p>
 <p><a href="/downloads/電腦輔助設計與實習.pdf">/downloads/電腦輔助設計與實習.pdf</a></p>
 <p style="padding-left: 30px;">......</p>

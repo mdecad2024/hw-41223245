@@ -2,7 +2,7 @@
         <head>
         <title>cad_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H3">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,13 +141,66 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW4_Exam << <a href='HW4_Exam.html'>Previous</a> <a href='Pinball.html'>Next</a> >> Pinball<br /><h1>w16_exam3</h1>
-<p>檔案:<a href="./../downloads/41223245_w16_exam3.7z.zip">/downloads/41223245_w16_exam3.7z.zip</a></p>
-<p>照片:</p>
-<p><img alt="" height="212" src="./../images/ex3.png" width="400"/></p>
-<p>影片:</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tKr9zIPYtCk?si=8URuvu_6iqUHSPkS" title="YouTube video player" width="560"></iframe></p>
-<br />HW4_Exam << <a href='HW4_Exam.html'>Previous</a> <a href='Pinball.html'>Next</a> >> Pinball</div>
+    <div id="tipue_search_content">w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report<br /><h1>Pinball</h1>
+<p><a href="./../downloads/pinpinball.ttt">/downloads/pinball.ttt</a></p>
+<p><img alt="" height="212" src="./../images/螢幕擷取畫面 2025-01-10 151935.png" width="400"/></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pip install pyzmq cbor keyboard
+from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+import keyboard
+
+# Connecting to the CoppeliaSim server
+client = RemoteAPIClient('localhost', 23000)
+
+print('Program started')
+sim = client.getObject('sim')
+
+# Get the handles for the sliders (prismatic joints)
+cw = sim.getObject('/cw_joint')
+ccw = sim.getObject('/ccw_joint')
+slider = sim.getObject('/Prismatic_joint')
+
+# Starting the simulation
+sim.startSimulation()
+print('Simulation started')
+
+# Main control loop
+def main():
+    # Keep running until simulation is stopped
+    while True:
+        # Controls for cw and ccw joints
+        if keyboard.is_pressed('l'):  # Move cw slider to -0.25 position
+            print("l is pressed")
+            sim.setJointTargetPosition(cw, -0.25)
+
+        if keyboard.is_pressed('p'):  # Reset cw slider to the original position
+            print("p is pressed")
+            sim.setJointTargetPosition(cw, 0.0)
+
+        if keyboard.is_pressed('w'):  # Move ccw slider to -0.28 position
+            print("w is pressed")
+            sim.setJointTargetPosition(ccw, -0.28)
+
+        if keyboard.is_pressed('s'):  # Reset ccw slider to the original position
+            print("s is pressed")
+            sim.setJointTargetPosition(ccw, 0.0)
+
+        # Controls for the Prismatic_joint
+        if keyboard.is_pressed('E'):  # Move slider to -0.15 position
+            print("E is pressed")
+            sim.setJointTargetPosition(slider, 0.20)
+
+        if keyboard.is_pressed('D'):  # Reset slider to the original position
+            print("D is pressed")
+            sim.setJointTargetPosition(slider, 0.0)
+
+        # Stop the simulation
+        if keyboard.is_pressed('t'):  # Stop the simulation
+            print("t is pressed - stopping simulation")
+            sim.stopSimulation()
+            break
+
+# Start the main control loop
+main()</pre><br />w16_exam3 << <a href='w16_exam3.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report</div>
         
     <!-- footer -->
       <div class="container">
